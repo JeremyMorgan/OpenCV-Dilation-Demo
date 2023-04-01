@@ -1,6 +1,7 @@
 # import the necessary libraries
-import cv2
-import numpy as np
+import cv2  # library for computer vision tasks
+import numpy as np  # library for numerical operations
+import matplotlib.pyplot as plt  # library for visualization
 
 # read in the image as grayscale using OpenCV's imread() function
 image = cv2.imread('images/mustang.png', cv2.IMREAD_GRAYSCALE)
@@ -13,15 +14,9 @@ kernel = np.ones((5, 5), np.uint8)
 # dilation is a morphological operation that expands the boundaries of objects in an image
 dilated_image = cv2.dilate(image, kernel, iterations=2)
 
-# display the original and dilated images using OpenCV's imshow() function
-# the window names are provided as the first argument
-cv2.imshow('Original Image', image)
-cv2.imshow('Dilated Image', dilated_image)
-
-# wait for a key press before closing the windows
-# the argument passed to waitKey() specifies the delay in milliseconds
-# a value of 0 means the window will stay open indefinitely until a key is pressed
-cv2.waitKey(0)
-
-# clean up by destroying all the windows
-cv2.destroyAllWindows()
+# create a figure with two subplots to show the original and dilated images side by side
+plt.figure(figsize=(12, 6))
+plt.subplot(121), plt.imshow(image, cmap='gray'), plt.title('Original Image')
+plt.subplot(122), plt.imshow(dilated_image,
+                             cmap='gray'), plt.title('Dilated Image')
+plt.show()
